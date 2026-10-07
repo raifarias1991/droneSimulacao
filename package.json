@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:backend": "cd backend && python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+    "dev:full": "npx concurrently \"pnpm dev\" \"pnpm dev:backend\"",
+    "ai:install": "cd backend && python -m pip install -r requirements.txt"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
@@ -76,6 +79,7 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.0.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"

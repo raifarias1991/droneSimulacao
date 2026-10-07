@@ -1,65 +1,59 @@
-## 🚁 Drone Simulation – Integração e Visualização 3D
+# Drone Simulation AI
 
-Acesse a demonstração: [drone-simulacao.vercel.app](https://drone-simulacao.vercel.app/)
+This project now includes a Python AI layer for mission planning and autonomous decision support.
 
-### Descrição
+## Backend
 
-Este projeto é uma aplicação moderna construída com **Next.js** e **React Three Fiber** que simula visualmente a integração de drones em ambientes 3D. O foco é na visualização e controle intuitivo de drones em um ambiente gráfico, com uma interface rica e responsiva.
+The backend is built with FastAPI and can run independently from the Next.js frontend.
 
----
-
-### ✨ Funcionalidades
-
-* Visualização 3D de drones usando `three.js` e `@react-three/fiber`
-* Interface interativa com Radix UI
-* Estilização responsiva com Tailwind CSS
-* Controle e feedback de estados com Zustand e React Hook Form
-* Compatível com Expo para integração futura em plataformas móveis
-
----
-
-### 📦 Tecnologias
-
-* [Next.js 15](https://nextjs.org/)
-* [React 19](https://reactjs.org/)
-* [Three.js](https://threejs.org/)
-* [React Three Fiber](https://docs.pmnd.rs/react-three-fiber)
-* [Zustand](https://zustand-demo.pmnd.rs/)
-* [Tailwind CSS](https://tailwindcss.com/)
-* [Radix UI](https://www.radix-ui.com/)
-* [Framer Motion](https://www.framer.com/motion/)
-* [Zod](https://zod.dev/) para validação de schemas
-
----
-
-### 🚀 Como executar localmente
+### Quick start
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/drone-simulation.git
-cd drone-simulation
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
 
-# Instale as dependências
+Endpoints:
+- `GET /health`
+- `GET /api/ai/health`
+- `GET /api/ai/providers`
+- `POST /api/ai/drone-decision`
+- `POST /api/ai/mission-plan`
+
+## Frontend integration
+
+Use the following Next.js commands:
+
+```bash
 pnpm install
-
-# Execute o servidor de desenvolvimento
+pnpm dev:backend
 pnpm dev
 ```
 
-Acesse `http://localhost:3000` no navegador.
+Or run both together:
 
----
-
-### 📁 Estrutura de pastas
-
-```
-/
-├── app/                 # Entrypoint da aplicação Next.js
-├── components/          # Componentes reutilizáveis
-├── public/              # Arquivos estáticos
-├── styles/              # Estilos globais (via Tailwind)
-├── tsconfig.json        # Configuração TypeScript
-└── tailwind.config.ts   # Configuração Tailwind
+```bash
+pnpm dev:full
 ```
 
----
+## AI capabilities
+
+- drone safety scoring
+- dynamic mission planning
+- weather-aware route adjustments
+- battery-preservation logic
+- OpenAI or Ollama provider support
+- mock mode for offline use
+
+## Environment variables
+
+Create `backend/.env` based on `.env.example` and set:
+
+```bash
+LLM_PROVIDER=mock
+OPENAI_API_KEY=your_key_here
+```
